@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<page:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Bridge.Views.OnboardingView"
+             xmlns:local="clr-namespace:Bridge.Extensions"
+             xmlns:viewmodels="clr-namespace:Bridge.ViewModels"
+             xmlns:page="clr-namespace:Bridge.Views"
+             Title="OnboardingView" BackgroundImageSource="background.jpg" Shell.NavBarIsVisible="False">
+
+    <Grid Padding="32,0" RowSpacing="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout VerticalOptions="Center" Margin="0,80,0,0">
+            <Image Source="logo.svg" HeightRequest="80"/>
+
+            <StackLayout Spacing="5" HorizontalOptions="Center" Margin="0,30,0,0">
+
+                <Label Text="{local:Localize HeaderOnboard1}"  
+                   SemanticProperties.HeadingLevel="Level1"
+                   FontSize="34"
+                   HorizontalOptions="Center"
+                   FontFamily="PoppinsBold"
+                   TextColor="#000000" LineBreakMode="WordWrap" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                <Label Text="{local:Localize HeaderOnboard2}"
+                       FontSize="12"
+                       HorizontalOptions="Center"
+                       FontFamily="PoppinsRegular"
+                       TextColor="#666666" LineBreakMode="WordWrap" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+
+            </StackLayout>
+        </StackLayout>
+
+        <StackLayout Spacing="15" VerticalOptions="Center" Margin="0,50,0,0" Grid.Row="1">
+            <Button 
+                Text="{local:Localize Register}"
+                BackgroundColor="#0991C9"
+                TextColor="#FFFFFF"
+                FontFamily="PoppinsSemiBold"
+                Command="{Binding GoToRegisterCommand}"/>
+
+            <Button 
+                Text="{local:Localize Login}"
+                BackgroundColor="#FFFFFF"
+                TextColor="#0991C9"
+                FontFamily="PoppinsSemiBold"
+                Command="{Binding GoToLoginCommand}"/>
+
+        </StackLayout>
+
+    </Grid>
+</page:BasePage>

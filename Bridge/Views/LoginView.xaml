@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<page:BasePage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Bridge.Views.LoginView"
+             xmlns:local="clr-namespace:Bridge.Extensions"
+             xmlns:viewmodels="clr-namespace:Bridge.ViewModels"
+             Title="Login" BackgroundImageSource="background.jpg" Shell.NavBarIsVisible="False"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:helper="clr-namespace:Bridge.Helpers"
+             xmlns:page="clr-namespace:Bridge.Views">
+
+    <Grid Padding="32,0" RowSpacing="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <StackLayout VerticalOptions="Center" Margin="0,80,0,0">
+            <Image Source="logo.svg" HeightRequest="80"/>
+
+            <Label Text="{local:Localize HeaderLogin1}"  
+                   SemanticProperties.HeadingLevel="Level1"
+                   FontSize="34"
+                   HorizontalOptions="Center"
+                   FontFamily="PoppinsBold"
+                   TextColor="#000000"/>
+
+            <StackLayout Orientation="Horizontal" Spacing="5" HorizontalOptions="Center">
+
+                <Label Text="{local:Localize HeaderLogin2}"
+                       FontSize="12"
+                       HorizontalOptions="Center"
+                       FontFamily="PoppinsRegular"
+                       TextColor="#666666"/>
+
+                <Label Text="{local:Localize Register}"
+                       FontSize="12"
+                       HorizontalOptions="Center"
+                       FontFamily="PoppinsSemiBold"
+                       TextColor="#0991C9">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToRegisterCommand}" NumberOfTapsRequired="1"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </StackLayout>
+
+        </StackLayout>
+
+        <VerticalStackLayout Grid.Row="1">
+            <Entry 
+               Margin="0,40,0,0"
+               Placeholder="{local:Localize Email}"
+               BackgroundColor="White"
+               Style="{StaticResource EntryOutside}"
+               HorizontalTextAlignment="Center"
+               Text="{Binding Username}">
+                <Entry.Behaviors>
+                    <toolkit:EmailValidationBehavior
+                    x:Name="EmailValidator"
+                    Flags="ValidateOnValueChanged"
+                    DecorationFlags="Trim"/>
+                </Entry.Behaviors>
+            </Entry>
+
+            <Label Text="{local:Localize InvalidEmail}"
+            VerticalTextAlignment="Start"
+            HorizontalTextAlignment="Start"
+            HorizontalOptions="Start"
+            VerticalOptions="Start"
+            TextColor="Red"
+            IsVisible="{Binding IsNotValid, Source={x:Reference EmailValidator}}"/>
+            
+        </VerticalStackLayout>
+      
+
+        <Entry Grid.Row="2" 
+               Placeholder="{local:Localize Password}"
+               BackgroundColor="White"
+               Style="{StaticResource EntryOutside}"
+               HorizontalTextAlignment="Center"
+               IsPassword="True"
+               Text="{Binding Password}"
+               />
+
+        <Button Grid.Row="3"
+                Text="{local:Localize Login}"
+                Command="{Binding LoginCommand}"
+                ContentLayout="Right,20">
+            <Button.ImageSource>
+                <FontImageSource FontFamily="FaRegular"
+                                     Color="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}"
+                                     Glyph="{x:Static helper:FaRegularIcons.RightToBracket}"/>
+            </Button.ImageSource>
+        </Button>
+
+
+        <Button Grid.Row="4"
+                Text="{local:Localize LoginFinger}"
+                Command="{Binding LoginFingerCommand}"
+                ContentLayout="Right,20"
+                IsVisible="{Binding IsFingerVisible}">
+            <Button.ImageSource>
+                <FontImageSource FontFamily="FaRegular"
+                                     Color="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Gray900}}"
+                                     Glyph="{x:Static helper:FaRegularIcons.Fingerprint}"/>
+            </Button.ImageSource>
+        </Button>
+
+
+    </Grid>
+</page:BasePage>

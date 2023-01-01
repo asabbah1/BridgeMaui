@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Bridge.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Bridge.Views"
+    xmlns:ext="clr-namespace:Bridge.Extensions"
+    xmlns:helper="clr-namespace:Bridge.Helpers"
+    Shell.FlyoutBehavior="Disabled">
+
+    <ShellContent
+        Title="Onboarding"
+        ContentTemplate="{DataTemplate local:OnboardingView}"
+        Route="Onboarding" />
+
+    <ShellContent 
+        Title="Login"
+        ContentTemplate="{DataTemplate local:LoginView}"
+        Route="LoginView" />
+
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" Route="Home">
+        <ShellContent Title="{ext:Localize Home}" ContentTemplate="{DataTemplate local:HomeView}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FaRegular"
+                                 Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                                 Glyph="{x:Static helper:FaRegularIcons.House}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Title="{ext:Localize Transactions}" ContentTemplate="{DataTemplate local:TransactionsView}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FaRegular"
+                                 Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                                 Glyph="{x:Static helper:FaRegularIcons.HandHoldingDollar}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent Title="{ext:Localize Profile}" ContentTemplate="{DataTemplate local:ProfileView}">
+            <ShellContent.Icon>
+                <FontImageSource FontFamily="FaRegular"
+                                 Color="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource White}}"
+                                 Glyph="{x:Static helper:FaRegularIcons.CircleUser}"/>
+            </ShellContent.Icon>
+        </ShellContent>
+    </FlyoutItem>
+    
+
+</Shell>
